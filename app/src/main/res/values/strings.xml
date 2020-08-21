@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">UserList</string>
+    <string name="template_username">Firstname Lastname</string>
+    <string name="template_email">mailto@gmail.com</string>
+    <string name="content_description_avatar">avatar</string>
 </resources>
