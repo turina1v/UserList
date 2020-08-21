@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.turina1v.userlist.R
 import kotlinx.android.synthetic.main.fragment_list.*
 
-class UserListFragment: Fragment() {
+class UserListFragment : Fragment() {
     lateinit var adapter: UserRecyclerAdapter
     lateinit var viewModel: UserListViewModel
 
@@ -35,7 +35,7 @@ class UserListFragment: Fragment() {
             textLoadError.visibility = View.GONE
         })
         viewModel.loaderLiveData.observe(this, Observer { isLoading ->
-            if (isLoading){
+            if (isLoading) {
                 progressBar.visibility = View.VISIBLE
                 recyclerUsers.visibility = View.GONE
                 textLoadError.visibility = View.GONE
