@@ -26,6 +26,7 @@ class UserListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         adapter = UserRecyclerAdapter()
         recyclerUsers.adapter = adapter
+        recyclerUsers.addItemDecoration(ListItemDecoration(20))
 
         viewModel = ViewModelProviders.of(this).get(UserListViewModel::class.java)
         viewModel.usersLiveData.observe(this, Observer { users ->
