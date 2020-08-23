@@ -4,4 +4,7 @@
     <string name="template_email">mailto@gmail.com</string>
     <string name="content_description_avatar">avatar</string>
     <string name="content_description_more">more</string>
+    <string name="hint_first_name">First name</string>
+    <string name="hint_last_name">Last name</string>
+    <string name="hint_email">E-mail</string>
 </resources>
