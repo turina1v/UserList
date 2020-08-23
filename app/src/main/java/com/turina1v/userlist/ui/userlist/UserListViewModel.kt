@@ -4,12 +4,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.turina1v.userlist.data.repository.UserRepositoryImpl
+import com.turina1v.userlist.App
 import com.turina1v.userlist.domain.model.UserModel
+import com.turina1v.userlist.domain.repository.UserRepository
 import com.turina1v.userlist.domain.usecase.LoadUserListUseCase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class UserListViewModel : ViewModel() {
+    @Inject
+    lateinit var repository: UserRepository
+
     private val _usersLiveData: MutableLiveData<List<UserModel>> = MutableLiveData()
     val usersLiveData: LiveData<List<UserModel>>
         get() = _usersLiveData
@@ -23,9 +28,10 @@ class UserListViewModel : ViewModel() {
         get() = _errorLiveData
 
     init {
+        App.component.inject(this)
         viewModelScope.launch {
             _loaderLiveData.value = true
-            when (val result = LoadUserListUseCase(UserRepositoryImpl()).execute()) {
+            when (val result = LoadUserListUseCase(repository).execute()) {
                 is LoadUserListUseCase.LoadUsersResult.Success -> {
                     _usersLiveData.value = result.users
                 }

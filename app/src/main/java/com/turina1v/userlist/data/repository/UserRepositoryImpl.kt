@@ -1,16 +1,31 @@
 package com.turina1v.userlist.data.repository
 
-import com.turina1v.userlist.data.network.UserApiProvider
+import com.turina1v.userlist.data.database.UserDatabase
+import com.turina1v.userlist.data.network.UserApi
 import com.turina1v.userlist.domain.model.UserModel
 import com.turina1v.userlist.domain.repository.UserRepository
 
-class UserRepositoryImpl : UserRepository {
+class UserRepositoryImpl(private val database: UserDatabase, private val api: UserApi) :
+    UserRepository {
     override suspend fun loadUsers(): List<UserModel> {
-        val users = UserApiProvider.api.getUsers().users
-        val models = mutableListOf<UserModel>()
-        users.forEach {
-            models.add(UserModel(it.avatar, it.firstName + " " + it.lastName, it.email))
+        val dbUsers = database.photoDao().getUsers()
+        return if (dbUsers.isNullOrEmpty()) {
+            val models = mutableListOf<UserModel>()
+            val apiUsers = api.getUsers().users
+            apiUsers.forEach {
+                models.add(
+                    UserModel(
+                        avatar = it.avatar,
+                        firstName = it.firstName,
+                        lastName = it.lastName,
+                        email = it.email
+                    )
+                )
+            }
+            database.photoDao().insertUsers(models)
+            models
+        } else {
+            dbUsers
         }
-        return models
     }
 }
