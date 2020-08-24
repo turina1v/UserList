@@ -9,4 +9,5 @@
     <string name="hint_email">E-mail</string>
     <string name="button_save">Save</string>
     <string name="button_delete">Delete</string>
+    <string name="button_reload_users">Reload users from server</string>
 </resources>

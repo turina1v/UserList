@@ -28,4 +28,8 @@ class UserRepositoryImpl(private val database: UserDatabase, private val api: Us
             dbUsers
         }
     }
+
+    override suspend fun deleteAllUsers() {
+        database.userDao().deleteUsers()
+    }
 }

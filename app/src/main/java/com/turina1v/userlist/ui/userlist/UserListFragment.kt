@@ -57,6 +57,10 @@ class UserListFragment : Fragment(), OnUserItemClickListener {
             progressBar.visibility = View.GONE
             recyclerUsers.visibility = View.GONE
         })
+
+        buttonReloadUsers.setOnClickListener {
+            viewModel.reloadUsers()
+        }
     }
 
     override fun onUserItemClick(userModel: UserModel) {
