@@ -7,4 +7,6 @@
     <string name="hint_first_name">First name</string>
     <string name="hint_last_name">Last name</string>
     <string name="hint_email">E-mail</string>
+    <string name="button_save">Save</string>
+    <string name="button_delete">Delete</string>
 </resources>

@@ -42,6 +42,7 @@
         android:layout_height="wrap_content"
         style="@style/TextInputStyle"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:hint="@string/hint_email">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -49,4 +50,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:text="@string/button_save"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/button_delete"/>
+    </LinearLayout>
 </LinearLayout>
