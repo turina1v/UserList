@@ -8,7 +8,7 @@ import com.turina1v.userlist.domain.repository.UserRepository
 class UserRepositoryImpl(private val database: UserDatabase, private val api: UserApi) :
     UserRepository {
     override suspend fun loadUsers(): List<UserModel> {
-        val dbUsers = database.photoDao().getUsers()
+        val dbUsers = database.userDao().getUsers()
         return if (dbUsers.isNullOrEmpty()) {
             val models = mutableListOf<UserModel>()
             val apiUsers = api.getUsers().users
@@ -22,7 +22,7 @@ class UserRepositoryImpl(private val database: UserDatabase, private val api: Us
                     )
                 )
             }
-            database.photoDao().insertUsers(models)
+            database.userDao().insertUsers(models)
             models
         } else {
             dbUsers

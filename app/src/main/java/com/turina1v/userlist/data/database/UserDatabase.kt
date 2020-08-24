@@ -6,5 +6,5 @@ import com.turina1v.userlist.domain.model.UserModel
 
 @Database(entities = [UserModel::class], version = 1, exportSchema = false)
 abstract class UserDatabase : RoomDatabase() {
-    abstract fun photoDao(): UserDao
+    abstract fun userDao(): UserDao
 }

@@ -6,8 +6,10 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/ivAvatar"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
         android:contentDescription="@string/content_description_avatar"
         android:src="@drawable/avatar_example" />
 
@@ -57,6 +59,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/buttonSave"
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
@@ -65,6 +68,7 @@
             android:text="@string/button_save"/>
 
         <Button
+            android:id="@+id/buttonDelete"
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"

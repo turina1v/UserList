@@ -16,12 +16,17 @@ class UserRecyclerAdapter : RecyclerView.Adapter<UserRecyclerAdapter.UserViewHol
             notifyDataSetChanged()
         }
 
+    var onUserItemClickListener: OnUserItemClickListener? = null
+
     inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(userModel: UserModel) {
             itemView.apply {
-                Glide.with(itemView).load(userModel.avatar).into(iv_avatar)
+                Glide.with(this).load(userModel.avatar).into(iv_avatar)
                 tv_username.text = userModel.getFullName()
                 tv_email.text = userModel.email
+                setOnClickListener {
+                    onUserItemClickListener?.onUserItemClick(userModel)
+                }
             }
         }
     }

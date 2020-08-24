@@ -8,11 +8,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.turina1v.userlist.R
+import com.turina1v.userlist.domain.model.UserModel
+import com.turina1v.userlist.ui.userdetails.UserDetailsFragment
 import kotlinx.android.synthetic.main.fragment_list.*
 
-class UserListFragment : Fragment() {
+class UserListFragment : Fragment(), OnUserItemClickListener {
     lateinit var adapter: UserRecyclerAdapter
     lateinit var viewModel: UserListViewModel
+
+    companion object{
+        const val KEY_USER_MODEL = "key_user_model"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,6 +31,7 @@ class UserListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter = UserRecyclerAdapter()
+        adapter.onUserItemClickListener = this
         recyclerUsers.adapter = adapter
         recyclerUsers.addItemDecoration(ListItemDecoration(20))
 
@@ -51,5 +58,19 @@ class UserListFragment : Fragment() {
             recyclerUsers.visibility = View.GONE
         })
     }
+
+    override fun onUserItemClick(userModel: UserModel) {
+        activity?.let {
+            val detailsFragment = UserDetailsFragment()
+            val bundle = Bundle()
+            bundle.putParcelable(KEY_USER_MODEL, userModel)
+            detailsFragment.arguments = bundle
+            it.supportFragmentManager.beginTransaction().replace(
+                R.id.fragmentContainer,
+                detailsFragment
+            ).commit()
+        }
+    }
+
 
 }
